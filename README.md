@@ -1,3 +1,1 @@
-# Theoretical-CS
-
-Because TCS is amazing :)
+# Theoretical CS
