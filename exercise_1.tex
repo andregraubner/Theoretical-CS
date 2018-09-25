@@ -4,12 +4,13 @@
 \usepackage{parskip}
 \usepackage{tikz}
 \usepackage{amsmath}
+\usepackage{amsfonts}
 \usepackage{hyperref}
 
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}{Lemma}
 
-\title{Übung 1}
+\title{Serie 1}
 \author{André Graubner, Leonard von Kleist, Lukas Walker}
 \date{2018/09/27}
 
@@ -20,11 +21,23 @@
 \section{Aufgabe 1a}
 	Um die maximale Anzahl von Teilworten zu haben,
 	muss $m = n$ gelten und das Wort jedes Zeichen
-	genau einmal enthalten. Dann gilt:
+	genau einmal enthalten, da sonst mindestens das
+	Teilwort welches nur aus dem doppelt vorkommenden
+	Zeichen besteht doppelt verwendet wird. Es gilt:
 
 	\begin{lemma}
-		Sei $w_{max}$ eine Permutation der $n$ Zeichen in $\sigma$.
-		\[R \text{ is non-trivial} \iff 0 \neq 1\]
+		Sei $w_{max}$ eine Permutation der $n$ Zeichen in $\Sigma$. Dann gilt:
+		\[\Bigg\lvert \Big\{x \mid x \text{ ist Teilwort von } w_{max} \Big\} \Bigg\lvert = 
+		\bigg(\sum_{i=1}^{n} i\bigg) + 1 = \frac{n^2 + n}{2} + 1 \]
+
+		Beweis:
+		Jedes Teilwort (ausser $\lambda$) laesst sich als Tupel $(a,b)$ eindeutig darstellen,
+		wobei $a$ die Startposition und $b$ die Endposition des Teilwortes
+		innerhalb von $w_{max}$ bezeichnet. Hier muss gelten:
+		\[a, b \in \mathbb{N} \text{ mit } 1 \leq a \leq b \leq n\]
+		Von solchen Tupeln gibt es $\frac{n^2 + n}{2}$, doch wir haben $\lambda$
+		noch nicht mitgezählt, das von solchen Tupeln nicht beachtet wird.
+		Damit kommen wir auf die oben genannte Summe.
 	\end{lemma}
 
 \end{document}
