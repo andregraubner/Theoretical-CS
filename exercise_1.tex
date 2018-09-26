@@ -23,24 +23,20 @@
 \section{Aufgabe 1a}
 	Um die maximale Anzahl von Teilworten zu haben,
 	muss das Wort jedes Zeichen genau einmal enthalten, 
-	da sonst mindestens das Teilwort welches nur aus 
+	da sonst mindestens das Teilwort, welches nur aus 
 	dem doppelt vorkommenden Zeichen besteht doppelt 
-	verwendet wird. Es gilt:
+	verwendet wird. Sei $w_{max}$ so ein Wort. Dann gilt:
+	\[\Bigg\lvert \Big\{x \mid x \text{ ist Teilwort von } w_{max} \Big\} \Bigg\lvert = 
+	\bigg(\sum_{i=1}^{m} i\bigg) + 1 = \frac{m^2 + m}{2} + 1 \]
 
-	\begin{lemma}
-		Sei $w_{max}$ ein Wort von Länge m und eine Permutation von $m$ Zeichen aus $\Sigma$. Dann gilt:
-		\[\Bigg\lvert \Big\{x \mid x \text{ ist Teilwort von } w_{max} \Big\} \Bigg\lvert = 
-		\bigg(\sum_{i=1}^{m} i\bigg) + 1 = \frac{m^2 + m}{2} + 1 \]
-
-		Beweis:
-		Jedes Teilwort (ausser $\lambda$) lässt sich als Tupel $(a,b)$ eindeutig darstellen,
-		wobei $a$ die Startposition und $b$ die Endposition des Teilwortes
-		innerhalb von $w_{max}$ bezeichnet. Hier muss gelten:
-		\[a, b \in \mathbb{N} \text{ mit } 1 \leq a \leq b \leq m\]
-		Von solchen Tupeln gibt es $\frac{m^2 + m}{2}$, doch wir haben $\lambda$
-		noch nicht mitgezählt, das von solchen Tupeln nicht beachtet wird.
-		Damit kommen wir auf die oben genannte Summe.
-	\end{lemma}
+	Beweis:
+	Jedes Teilwort (ausser $\lambda$) lässt sich als Tupel $(a,b)$ eindeutig darstellen,
+	wobei $a$ die Startposition und $b$ die Endposition des Teilwortes
+	innerhalb von $w_{max}$ bezeichnet. Hier muss gelten:
+	\[a, b \in \mathbb{N} \text{ mit } 1 \leq a \leq b \leq m\]
+	Von solchen Tupeln gibt es $\frac{m^2 + m}{2}$, doch wir haben $\lambda$
+	noch nicht mitgezählt, das von solchen Tupeln nicht beachtet wird.
+	Damit kommen wir auf die oben genannte Summe.
 
 \section{Aufgabe 1b}
 	Die Gesamtzahl aller Wörter w mit $\lvert x \rvert = n$ ist $3^n$.
@@ -50,7 +46,7 @@
 	Dabei gibt es 3 mögliche Kombinationen der Zeichen (siehe $\binom{3}{2}$).
 	Wir zählen jedoch genau die Wörter doppelt, die aus genau einem
 	Zeichen gebildet werden können. Wenn wir diese wieder abziehen erhalten wir:
-	\[\big\{x \mid \text{$x$ enthält $a$, $b$ und $c$} \big\} = 3^n - (3 \cdot 2^n) + 6\]
+	\[\big\{x \mid \text{$x$ enthält $a$, $b$ und $c$} \big\} = 3^n - (3 \cdot 2^n) + 3\]
 
 \section{Aufgabe 2a}
 	Wir verwenden für den Beweis eine Fallunterscheidung.
@@ -66,7 +62,7 @@
 	
 	Fall 4: Weder $u$ noch $v$ sind $\lambda$.
 	Dann lassen sich $u$, $v$ und $uv$ folgendermassen eindeutig darstellen:
-	\[u = u_{1}u_{2}...u_{n} \text{ und } v = v_{1}v_{2}...v_{m} \]
+	\[u = u_{1}u_{2}...u_{n} \text{, } v = v_{1}v_{2}...v_{m} \text{ und } uv = u_{1}u_{2}...u_{n}v_{1}v_{2}...v_{m} \]
 	Also gilt per Definition:
 	\[u^R = u_{n}u_{n-1}...u_{1} \text{ und } v^R = v_{m}v_{m-1}...v_{1}\]
 	Daraus folgt:
@@ -94,11 +90,12 @@
 	für $0^{k-1} \cdot x$ mit $x \in L_{2} - \big\{ \lambda \big\}$.
 	
 	(c,d): Da eine Lösung für Teilaufgabe (d) auch eine Lösung für Teilaufgabe (c) ist, lösen wir beide auf einmal.
-	Dafür abstrahieren wir das Problem zunächst: Da wir ein Alphabet mit einem Zeichen wählen sollen, ist es vollkommen
-	egal, welches wir hier wählen. Der Einfachheit halber wählen wir jedoch $\Sigma = \big\{ 0 \big\}$.
+	Dafür abstrahieren wir das Problem zunächst: Wir wählen $\Sigma = \big\{ 0 \big\}$.
 	Um nun für beliebige Sprachen $L_{1}$ und $L_{2}$ die Eigenschaft $\lvert L_{1}L_{2} \rvert = \lvert L_{1} \rvert \cdot \lvert L_{2} \rvert$
 	zu haben muss gelten, dass jede Kombination von Elementen aus den Sprachen einzigartig ist.
 	Wir können die Elemente aus $L_{1}$ und $L_{2}$ hierbei sinnvollerweise als natürliche Zahlen darstellen (wobei die Zahl $n$ dem Wort $0^n$ entspricht).
 	Das Problem ist nun lediglich, zwei Mengen $A$ und $B$ von natürlichen Zahlen zu finden, sodass die Summen von allen Paaren $(a,b)$ einzigartig sind,
-	weil die Konkatenation $0^n \cdot 0^m = 0^{n+m}$ ist.
+	weil die Konkatenation $0^n \cdot 0^m = 0^{n+m}$ ist. Dies gilt für $A = \big\{ 10^1,...,10^k \big\}$ und $B = \big\{ 10^{k+1},...,10^{k+l} \big\}$.
+	Somit sind $L_{1} = \big\{ 0^{10},...,0^{10^k} \big\}$ und $L_{2} = \big\{ 0^{10^{k+1}},...,0^{10^{k+l}} \big\}$ die gesuchten Lösungen.
+	
 \end{document}
