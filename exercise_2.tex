@@ -3,6 +3,7 @@
 \usepackage{fullpage}
 \usepackage{parskip}
 \usepackage{tikz}
+\usepackage{fouriernc}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -36,21 +37,53 @@
 	Sei $A_{enum}$ (mit Eingabe $n$) ein Aufzählungsalgorithmus für $L$.
 	Wir konstruieren einen Algorithmus (mit Eingabe $x$), der $L$ erkennt:
 	Bezeichne $k$ die Stelle, an der das Wort $x$ kanonisch in $\Sigma^*$ steht.
-	Rufe $A_{enum}$ mit Eingabe $k$ auf. Wenn eine der von $A_{enum}$ ausgegebenen
+	Rufe $A_{enum}$ mit Eingabe $k$ auf. Wenn eines der von $A_{enum}$ ausgegebenen
 	Wörter $x$ ist, so ist $x \in L$, also geben wir 1 (bzw. "ja", etc) aus, sonst 0.
 
 \section{Aufgabe 5}
 
-	Im Intervall $\mathopen[2^n, 2^{n+1}-1 \mathopen]$ gibt es $2^{n+1} - 2^n - 1$ verschiedene Zahlen.
+	Im Intervall $\mathopen[2^n, 2^{n+1}-1 \mathopen]$ gibt es $2^n$ verschiedene Zahlen.
 	Wir betrachten jeweils lediglich die kürzesten Maschinencodes, die diese Zahlen generieren.
 	Weiterhin ist klar, dass diese Codes für zwei verschiedene Zahlen unterschiedlich sein müssen. 
-	Es reicht also zu zeigen, dass von $2^{n+1} - 2^n - 1$ paarweise unterschiedlichen binären Strings
+	Es reicht also zu zeigen, dass von $2^n$ paarweise unterschiedlichen binären Strings
 	für jedes $i < n$ mindestens $2^n - 2^{n-i}$ die Länge $n - i$ haben.
 
 	Die Anzahl der (nichtleeren) Bitstrings von Länge kleiner als $n - i$ ist 
 	\[\sum_{k=1}^{n-i-1} 2^k = 2^{n-i} - 2\]
 	Wenn wir diese Anzahl nun jedoch von der Menge an Zahlen in unserem Intervall abziehen, sehen wir:
-	\[2^{n+1} - 2^{n} - 1 - 2^{n-i} + 2 = 2^{n+1} - 2^{n} + 1 - 2^{n-i} \geq 2^n - 2^{n-i}\]
+	\[2^n - (2^{n-i} - 2) = 2^n - 2^{n-i} + 2 \geq 2^n - 2^{n-i}\]
 	Also gilt für mindestens $2^n - 2^{n-i}$ der Zahlen $K(x) \geq n-i$.
+
+\section{Aufgabe 6a}
+
+	Mit einem Programm der Form "Print "0" 8 * $n^4$ times" mit der Eingabe $n$ können wir jedes $w_n$ generieren.
+	Hierbei hat alles in dem Programm ausser $n$ eine konstante Länge (wir können sogar das erste Bit von $n$ ignorieren, weil es sowieso eine 1 ist).
+
+	Demnach gilt:
+	\[K(w_n) \leq \left \lceil{\log{n}}\right \rceil + c \]
+
+	Um die Komplexität nun im Verhältnis zu $w_n$ anzugeben, müssen wir also nun die Zahl $n$ als Funktion von der Länge von $w_n$ angeben.
+	Hierbei gilt:
+
+	\[\lvert w_n \rvert = 1 * 2 * 2 * 2 * n^4 = 8 * n^4 \Rightarrow n = \frac{\sqrt[4]{w_n}}{\sqrt{2}}\]
+
+	Also ist eine obere Schranke für $K(w_n)$:
+
+	\[K(w_n) \leq \left \lceil{\log{\frac{\sqrt[4]{w_n}}{\sqrt{2}}}}\right \rceil\]
+
+\section{Aufgabe 6b}
+
+	Sei $y_i = 2^{2^{n_{i}+2}}$ für ein $n_i \in \mathbb[N]^+$. Dann gibt es ein Programm, welches $y_i$ aus $n_i$ konstruiert. Es gilt also:
+
+	\[K(y_i) \leq \left \lceil{log{n_i}}\right \rceil + c \]
+
+	Hierbei ist zu beachten, dass $n$ in folgendem Verhältnis zu $y_i$ steht:
+	
+	\[n_{i} = \log\log\sqrt[4]{y_i} \]
+
+	Daraus folgt dass für alle $y_i$ gilt:
+
+	\[K(y_i) \leq \left \lceil{\log\log\log\sqrt[4]{y_i}}\right \rceil + c \]
+	 
 
 \end{document}
