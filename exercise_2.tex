@@ -73,7 +73,7 @@
 
 \section{Aufgabe 6b}
 
-	Sei $y_i = (2^{2^{2^i}})^4$ für ein $i \in \mathbb{N}_{>0}$. Dann gibt es ein Programm, welches $y_i$ aus $i$ konstruiert. Es gilt also:
+	Sei $y_i = (2^{2^{2^i}})^4$ für ein $i \in \mathbb{N}_{>0}$. Dann gibt es ein Programm, welches $y_i$ aus $i$ konstruiert. Es gibt also eine (feste) Konstante c, so dass für alle $y_i$ gilt::
 
 	\[K(y_i) \leq \left \lceil{\log_2(i+1)}\right \rceil + c \]
 
@@ -83,7 +83,7 @@
 
 	Es gilt also für alle $y_i$:
 
-	\[K(y_i) \leq \left \lceil{\log_2(i+1)}\right \rceil + c \leq i + c = \log_2(\log_2(\log_2(\sqrt[4]{y_i}))) + c \]
+	\[K(y_i) \leq \left \lceil{\log_2(i+1)}\right \rceil + c \leq i + c = \left \lceil{\log_2(\log_2(\log_2(\sqrt[4]{y_i})))}\right \rceil  + c \]
 	 
 
 \end{document}
