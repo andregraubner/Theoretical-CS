@@ -15,7 +15,7 @@
 
 \title{Serie 2}
 \author{André Graubner, Lukas Walker, Leonard von Kleist}
-\date{28. September 2018}
+\date{4. Oktober 2018}
 
 \begin{document} 
 
@@ -57,33 +57,33 @@
 \section{Aufgabe 6a}
 
 	Mit einem Programm der Form "Print "0" 8 * $n^4$ times" mit der Eingabe $n$ können wir jedes $w_n$ generieren.
-	Hierbei hat alles in dem Programm ausser $n$ eine konstante Länge (wir können sogar das erste Bit von $n$ ignorieren, weil es sowieso eine 1 ist).
+	Hierbei hat alles in dem Programm ausser $n$ eine konstante Länge.
 
 	Demnach gilt:
-	\[K(w_n) \leq \left \lceil{\log{n}}\right \rceil + c \]
+	\[K(w_n) \leq \left \lceil{\log_2(n+1)}\right \rceil + c \]
 
 	Um die Komplexität nun im Verhältnis zu $w_n$ anzugeben, müssen wir also nun die Zahl $n$ als Funktion von der Länge von $w_n$ angeben.
-	Hierbei gilt:
+	Hierbei gilt (unter der Annahme, dass jedes Potenzzeichen eine weitere Iteration des Strings darstellt, also der Term $0^{2^3} = 00^3 = 0^6$ statt $0^8$ heisst):
 
-	\[\lvert w_n \rvert = 1 * 2 * 2 * 2 * n^4 = 8 * n^4 \Rightarrow n = \frac{\sqrt[4]{w_n}}{\sqrt{2}}\]
+	\[\lvert w_n \rvert = 1 * 2 * 2 * 2 * n^4 = 8 * n^4 \Rightarrow n = \sqrt[4]{\frac{\lvert w_n \rvert}{8}}\]
 
 	Also ist eine obere Schranke für $K(w_n)$:
 
-	\[K(w_n) \leq \left \lceil{\log{\frac{\sqrt[4]{w_n}}{\sqrt{2}}}}\right \rceil\]
+	\[K(w_n) \leq \left \lceil{\log_2({\sqrt[4]{\frac{\lvert w_n \rvert}{8}}} + 1)}\right \rceil + c\]
 
 \section{Aufgabe 6b}
 
-	Sei $y_i = 2^{2^{n_{i}+2}}$ für ein $n_i \in \mathbb{N}_{>0}$. Dann gibt es ein Programm, welches $y_i$ aus $n_i$ konstruiert. Es gilt also:
+	Sei $y_i = (2^{2^{2^i}})^4$ für ein $i \in \mathbb{N}_{>0}$. Dann gibt es ein Programm, welches $y_i$ aus $i$ konstruiert. Es gilt also:
 
-	\[K(y_i) \leq \left \lceil{log{n_i}}\right \rceil + c \]
+	\[K(y_i) \leq \left \lceil{\log_2(i+1)}\right \rceil + c \]
 
-	Hierbei ist zu beachten, dass $n$ in folgendem Verhältnis zu $y_i$ steht:
+	Hierbei ist zu beachten, dass $i$ in folgendem Verhältnis zu $y_i$ steht:
 	
-	\[n_{i} = \log\log\sqrt[4]{y_i} \]
+	\[i = \log_2(\log_2(\log_2(\sqrt[4]{y_i}))) \]
 
-	Daraus folgt dass für alle $y_i$ gilt:
+	Es gilt also für alle $y_i$:
 
-	\[K(y_i) \leq \left \lceil{\log\log\log\sqrt[4]{y_i}}\right \rceil + c \]
+	\[K(y_i) \leq \left \lceil{\log_2(i+1)}\right \rceil + c \leq i + c = \log_2(\log_2(\log_2(\sqrt[4]{y_i}))) + c \]
 	 
 
 \end{document}
